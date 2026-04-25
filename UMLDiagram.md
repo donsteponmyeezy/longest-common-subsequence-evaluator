@@ -41,8 +41,7 @@ classDiagram
 ```mermaid
 flowchart LR
     subgraph P1["Part 1"]
-        T[twoStrings.txt]
-        T --> R1[readTwoStrings]
+        T[twoStrings.txt] --> R1[readTwoStrings]
         R1 --> E1[evaluatePart1FullMatrix]
         E1 --> C1["DP: full c table, no b"]
         E1 --> TB[traceback from c only]
@@ -50,11 +49,11 @@ flowchart LR
     end
 
     subgraph P2["Part 2"]
-        M[multiStrings.txt]
-        M --> R2[readMultiStrings]
+        M[multiStrings.txt] --> R2[readMultiStrings]
         R2 --> PW[pairwiseLcsLengths]
         PW --> TR[lcsLengthTwoRow]
         PW --> SIM[classifySimilarity]
         SIM --> O2[print H or M or L or D table]
     end
+    P1 ~~~ P2
 ```
