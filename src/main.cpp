@@ -2,8 +2,8 @@
   Student Name: Caleb Hughes
   File Name: main.cpp
   Assignment number: Project 5
-  File Description: Program entry, part1 and part2 dispatch,
-                    usage text and error handling
+  File Description: Program entry, part1 & part2 runner,
+                    usage text, error handling
 **********************************************************************/
 
 #include "FileHandler/file_handler.hpp"
@@ -34,7 +34,7 @@ void runPart1(const std::string& path) {
     std::cout << "LCS subsequence:\n" << r.lcs_subsequence << "\n";
 }
 
-// pairwise two row lcs and similarity table
+// two row lcs and similarity table
 void runPart2(const std::string& path) {
     const std::vector<std::string> strings = readMultiStrings(path);
     const auto table = pairwiseLcsLengths(strings);

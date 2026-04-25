@@ -2,8 +2,7 @@
   Student Name: Caleb Hughes
   File Name: file_handler.cpp
   Assignment number: Project 5
-  File Description: Implementation of file parsing helpers for
-                    assignment input files
+  File Description: Implementation of file helpers for given input files
 **********************************************************************/
 
 #include "file_handler.hpp"
@@ -37,7 +36,7 @@ std::string readNonEmptyLine(std::istream& in, const char* ctx) {
 std::pair<std::string, std::string> readTwoStrings(const std::string& path) {
     std::ifstream in(path);
     if (!in) {
-        throw std::runtime_error("Failed to open file: " + path);
+        throw std::runtime_error("failed to open file: " + path);
     }
     std::string a = readNonEmptyLine(in, "first string in twoStrings file");
     std::string b = readNonEmptyLine(in, "second string in twoStrings file");
@@ -47,7 +46,7 @@ std::pair<std::string, std::string> readTwoStrings(const std::string& path) {
 std::vector<std::string> readMultiStrings(const std::string& path) {
     std::ifstream in(path);
     if (!in) {
-        throw std::runtime_error("Failed to open file: " + path);
+        throw std::runtime_error("failed to open file: " + path);
     }
 
     std::string countLine = readNonEmptyLine(in, "string count in multiStrings file");
@@ -55,7 +54,7 @@ std::vector<std::string> readMultiStrings(const std::string& path) {
     int n = 0;
     countStream >> n;
     if (!countStream || n < 0) {
-        throw std::runtime_error("Invalid string count in: " + path);
+        throw std::runtime_error("invalid string count: " + path);
     }
 
     std::vector<std::string> out;
