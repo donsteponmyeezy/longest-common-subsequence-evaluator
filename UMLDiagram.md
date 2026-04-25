@@ -1,4 +1,4 @@
-# NOTE: View this file on GitHub to render the diagrams below. I have also included a PDF file in the root for viewing both diagrams outside of Github.
+### NOTE: View this file on GitHub to render the diagrams below. I have also included a PDF file in the root for viewing both diagrams outside of Github.
 
 # UML Diagram
 
@@ -36,7 +36,7 @@ classDiagram
     LCSEvaluator ..> Part1Result : builds
 ```
 
-## Data flow (Part 1 & 2)
+# Data flow (Part 1 & 2)
 
 ```mermaid
 flowchart LR
