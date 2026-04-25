@@ -1,3 +1,11 @@
+/**********************************************************************
+  Student Name: Caleb Hughes
+  File Name: lcs_evaluator.cpp
+  Assignment number: Project 5
+  File Description: Full matrix lcs, two row length dp, pairwise
+                    lengths, similarity labels, formatted table output
+**********************************************************************/
+
 #include "lcs_evaluator.hpp"
 
 #include <algorithm>
@@ -5,15 +13,13 @@
 #include <iostream>
 #include <sstream>
 
-namespace hughesc {
-
 namespace {
 
 inline std::size_t flatIndex(std::size_t row, std::size_t col, std::size_t totalCols) {
     return row * totalCols + col;
 }
 
-}  // namespace
+}
 
 Part1Result evaluatePart1FullMatrix(const std::string& x, const std::string& y) {
     const std::size_t m = x.size();
@@ -136,7 +142,8 @@ char classifySimilarity(const std::string& a, const std::string& b, int lcs_leng
 void printPart2SimilarityTable(const std::vector<std::string>& strings,
                                const std::vector<std::vector<int>>& lcs_table) {
     const std::size_t n = strings.size();
-    const int labW = 3;  // column width for "01", "H", "-", etc. (matches assignment sample)
+    // column width for 01 style labels and h m l d cells
+    const int labW = 3;
 
     auto fmtIndex = [](std::size_t oneBased) {
         std::ostringstream oss;
@@ -167,5 +174,3 @@ void printPart2SimilarityTable(const std::vector<std::string>& strings,
         std::cout << "\n";
     }
 }
-
-}  // namespace hughesc

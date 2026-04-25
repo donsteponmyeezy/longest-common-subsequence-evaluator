@@ -1,10 +1,16 @@
+/**********************************************************************
+  Student Name: Caleb Hughes
+  File Name: file_handler.cpp
+  Assignment number: Project 5
+  File Description: Implementation of file parsing helpers for
+                    assignment input files
+**********************************************************************/
+
 #include "file_handler.hpp"
 
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
-
-namespace hughesc {
 
 namespace {
 
@@ -26,7 +32,7 @@ std::string readNonEmptyLine(std::istream& in, const char* ctx) {
     throw std::runtime_error(std::string("Unexpected EOF while reading: ") + ctx);
 }
 
-}  // namespace
+}
 
 std::pair<std::string, std::string> readTwoStrings(const std::string& path) {
     std::ifstream in(path);
@@ -59,5 +65,3 @@ std::vector<std::string> readMultiStrings(const std::string& path) {
     }
     return out;
 }
-
-}  // namespace hughesc

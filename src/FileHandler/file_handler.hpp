@@ -1,15 +1,22 @@
-#pragma once
+/**********************************************************************
+  Student Name: Caleb Hughes
+  File Name: file_handler.hpp
+  Assignment number: Project 5
+  File Description: Declarations for reading twoStrings.txt and
+                    multiStrings.txt input layouts
+**********************************************************************/
+
+#ifndef FILE_HANDLER_HPP
+#define FILE_HANDLER_HPP
 
 #include <string>
 #include <utility>
 #include <vector>
 
-namespace hughesc {
-
-// Reads two strings from disk (first non-empty line, second non-empty line).
+// first non-empty line and second non-empty line from disk
 std::pair<std::string, std::string> readTwoStrings(const std::string& path);
 
-// Reads an integer count N, then N strings (one per line, after skipping blank lines).
+// leading count N then N non-empty lines, skipping blank lines
 std::vector<std::string> readMultiStrings(const std::string& path);
 
-}  // namespace hughesc
+#endif

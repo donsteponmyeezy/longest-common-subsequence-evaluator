@@ -1,3 +1,11 @@
+/**********************************************************************
+  Student Name: Caleb Hughes
+  File Name: main.cpp
+  Assignment number: Project 5
+  File Description: Program entry, part1 and part2 dispatch,
+                    usage text and error handling
+**********************************************************************/
+
 #include "FileHandler/file_handler.hpp"
 #include "LCSEvaluator/lcs_evaluator.hpp"
 
@@ -6,6 +14,7 @@
 
 namespace {
 
+// prints argv0 and expected arguments
 void printUsage(const char* argv0) {
     std::cerr << "Usage:\n"
               << "  " << argv0 << " part1 [two_strings_file]\n"
@@ -13,9 +22,10 @@ void printUsage(const char* argv0) {
               << "Defaults: twoStrings.txt and multiStrings.txt in the current directory.\n";
 }
 
+// full c matrix part and stdout report
 void runPart1(const std::string& path) {
-    const auto [x, y] = hughesc::readTwoStrings(path);
-    const hughesc::Part1Result r = hughesc::evaluatePart1FullMatrix(x, y);
+    const auto [x, y] = readTwoStrings(path);
+    const Part1Result r = evaluatePart1FullMatrix(x, y);
 
     std::cout << "=== Part 1: Full LCS matrix (traceback from c only) ===\n\n";
     std::cout << "String X (" << r.x.size() << " chars):\n" << r.x << "\n\n";
@@ -24,19 +34,20 @@ void runPart1(const std::string& path) {
     std::cout << "LCS subsequence:\n" << r.lcs_subsequence << "\n";
 }
 
+// pairwise two row lcs and similarity table
 void runPart2(const std::string& path) {
-    const std::vector<std::string> strings = hughesc::readMultiStrings(path);
-    const auto table = hughesc::pairwiseLcsLengths(strings);
+    const std::vector<std::string> strings = readMultiStrings(path);
+    const auto table = pairwiseLcsLengths(strings);
 
     std::cout << "=== Part 2: Memory-optimized pairwise LCS (2-row DP) ===\n\n";
     std::cout << "Loaded " << strings.size() << " strings.\n";
     for (std::size_t i = 0; i < strings.size(); ++i) {
         std::cout << "  [" << i << "] length " << strings[i].size() << "\n";
     }
-    hughesc::printPart2SimilarityTable(strings, table);
+    printPart2SimilarityTable(strings, table);
 }
 
-}  // namespace
+}
 
 int main(int argc, char** argv) {
     if (argc < 2) {

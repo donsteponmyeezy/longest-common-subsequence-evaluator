@@ -1,30 +1,38 @@
-# Force -O3 for heavy pairwise LCS workloads (e.g. 20×20 upper triangle).
-CXX      := g++
-CXXFLAGS := -std=c++17 -O3 -Wall -Wextra -pedantic -I src
+# Compiler and flags
+CXX = g++
+# Just like the bin packing project, -O3 keeps part 1 and the all-pairs part 2 work from running unnecessarily slow
+CXXFLAGS = -O3 -std=c++17 -Wall -Wextra -I src
 
-SRC := src/main.cpp \
+# Executable name (matches submission folder naming)
+TARGET = hughesc
+
+# Source files based on CamelCase directory structure. I researched and found this is best practice for C++ projects.
+SRCS = src/main.cpp \
        src/FileHandler/file_handler.cpp \
        src/LCSEvaluator/lcs_evaluator.cpp
 
-OBJ := $(SRC:.cpp=.o)
-BIN := hughesc
+# Object mapping: .cpp to .o files
+OBJS = $(SRCS:.cpp=.o)
+
+# Default target
+all: $(TARGET)
+
+# Link executable: combines object files into executable
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+
+# Compile source
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Remove build artifacts
+clean:
+	rm -f $(OBJS) $(TARGET)
 
 .PHONY: all clean run-part1 run-part2
 
-all: $(BIN)
+run-part1: $(TARGET)
+	./$(TARGET) part1 twoStrings.txt
 
-$(BIN): $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $^
-
-src/main.o: src/main.cpp src/FileHandler/file_handler.hpp src/LCSEvaluator/lcs_evaluator.hpp
-src/FileHandler/file_handler.o: src/FileHandler/file_handler.cpp src/FileHandler/file_handler.hpp
-src/LCSEvaluator/lcs_evaluator.o: src/LCSEvaluator/lcs_evaluator.cpp src/LCSEvaluator/lcs_evaluator.hpp
-
-clean:
-	rm -f $(OBJ) $(BIN)
-
-run-part1: $(BIN)
-	./$(BIN) part1 twoStrings.txt
-
-run-part2: $(BIN)
-	./$(BIN) part2 multiStrings.txt
+run-part2: $(TARGET)
+	./$(TARGET) part2 multiStrings.txt
